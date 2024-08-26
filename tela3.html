@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Busca</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Resultados da Busca</h1>
+    <p id="resultadoBusca"></p>
+    <h2>Todos os Números Armazenados</h2>
+    <ul id="listaNumeros"></ul>
+
+    <button onclick="encerrarOperacao()">Encerrar</button>
+
+    <script>
+        function exibirResultados() {
+            // Obtendo o resultado da busca do localStorage
+            let resultadoBusca = localStorage.getItem('resultadoBusca');
+            
+            // Exibindo o resultado da busca
+            document.getElementById('resultadoBusca').innerText = resultadoBusca ? resultadoBusca : "Nenhuma busca realizada.";
+
+            // Obtendo a lista de números do localStorage
+            let numeros = JSON.parse(localStorage.getItem('numeros'));
+
+            // Verificando se a lista de números existe no localStorage
+            if (numeros && numeros.length > 0) {
+                // Exibindo todos os números armazenados com suas posições
+                let listaNumeros = document.getElementById('listaNumeros');
+                numeros.forEach(function(numero, index) {
+                    let li = document.createElement('li');
+                    li.textContent = `Posição ${index + 1}: ${numero}`;
+                    listaNumeros.appendChild(li);
+                });
+            } else {
+                document.getElementById('listaNumeros').innerHTML = "<li>Nenhum número armazenado.</li>";
+            }
+        }
+
+        function encerrarOperacao() {
+            // Limpando o localStorage
+            localStorage.removeItem('numeros');
+            localStorage.removeItem('resultadoBusca');
+
+            // Redirecionando para a página inicial ou limpando a tela
+            window.location.href = 'index.html';  // Redireciona para a tela inicial ou
+            // window.location.reload(); // Recarrega a página atual para limpar os dados
+        }
+
+        // Chama a função para exibir os resultados assim que a página é carregada
+        window.onload = exibirResultados;
+    </script>
+</body>
+</html>

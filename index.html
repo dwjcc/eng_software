@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armazenar Números</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <label>Insira o 1° número:
+        <textarea id="num1"></textarea>
+    </label>
+    <label>Insira o 2° número:
+        <textarea id="num2"></textarea>
+    </label>
+    <label>Insira o 3° número:
+        <textarea id="num3"></textarea>
+    </label>
+    <label>Insira o 4° número:
+        <textarea id="num4"></textarea>
+    </label>
+    <label>Insira o 5° número:
+        <textarea id="num5"></textarea>
+    </label>
+    <label>Insira o 6° número:
+        <textarea id="num6"></textarea>
+    </label>
+    <label>Insira o 7° número:
+        <textarea id="num7"></textarea>
+    </label>
+    <label>Insira o 8° número:
+        <textarea id="num8"></textarea>
+    </label>
+    <button onclick="armazenarNumeros()">Enviar</button>
+
+    <script>
+        function armazenarNumeros() {
+            // Criando uma lista vazia para armazenar os números
+            let numeros = [];
+
+            // Obtendo os valores dos textareas e adicionando na lista
+            for (let i = 1; i <= 8; i++) {
+                let numero = document.getElementById('num' + i).value;
+                numeros.push(numero);
+            }
+
+            // Armazenando a lista de números no localStorage
+            localStorage.setItem('numeros', JSON.stringify(numeros));
+
+            // Redirecionando para a página de busca
+            window.location.href = 'tela2.html';
+        }
+    </script>
+</body>
+</html>

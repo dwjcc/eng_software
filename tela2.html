@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Números</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <label>Buscar número:
+        <input type="text" id="searchNumber" placeholder="Digite o número para buscar">
+    </label>
+    <button onclick="buscarNumero()">Buscar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function buscarNumero() {
+            // Obtendo a lista de números do localStorage
+            let numeros = JSON.parse(localStorage.getItem('numeros'));
+
+            // Verificando se a lista de números existe no localStorage
+            if (!numeros) {
+                document.getElementById('resultado').innerText = "Nenhum número armazenado.";
+                return;
+            }
+
+            // Obtendo o número a ser buscado
+            let numeroBuscado = document.getElementById('searchNumber').value;
+
+            // Verificando se o número está na lista
+            if (numeros.includes(numeroBuscado)) {
+                localStorage.setItem('resultadoBusca', "Número encontrado: " + numeroBuscado);
+            } else {
+                localStorage.setItem('resultadoBusca', "Número não encontrado: " + numeroBuscado);
+            }
+
+            // Redirecionando para a tela 3 para exibir o resultado
+            window.location.href = 'tela3.html';
+        }
+    </script>
+</body>
+</html>
